@@ -113,9 +113,14 @@ echo.
 echo === Building with MinGW gcc ^(static, x64^) ===
 if defined GCC_DIR set "PATH=!GCC_DIR!;%PATH%"
 gcc --version | findstr /i "gcc"
+set "RESO=%SCRIPT_DIR%app.res.o"
+del "%RESO%" 2>nul
+if exist "%SCRIPT_DIR%app.rc" windres "%SCRIPT_DIR%app.rc" -O coff -o "%RESO%" 2>nul
+set "GCC_RES="
+if exist "%RESO%" set "GCC_RES="%RESO%""
 gcc -O2 -Wall -Wextra -static ^
     -DUNICODE -D_UNICODE ^
-    "%SRC%" -o "%OUT%" ^
+    "%SRC%" !GCC_RES! -o "%OUT%" ^
     -lkernel32 -luser32 -ladvapi32
 set "RC=!ERRORLEVEL!"
 if not "!RC!"=="0" (
@@ -137,11 +142,14 @@ exit /b !RC!
 echo.
 echo === Building with MSVC ^(static CRT, x64^) ===
 pushd "%SCRIPT_DIR%"
+rc /nologo /fo "%SCRIPT_DIR%app.res" "%SCRIPT_DIR%app.rc" >nul 2>nul
+set "CL_RES="
+if exist "%SCRIPT_DIR%app.res" set "CL_RES="%SCRIPT_DIR%app.res""
 cl /nologo /W3 /O2 /MT /DUNICODE /D_UNICODE ^
-   "%SRC%" /Fe"%OUT%" /Fo"%SCRIPT_DIR%nvidia_instant_replay_fix.obj" ^
+   "%SRC%" !CL_RES! /Fe"%OUT%" /Fo"%SCRIPT_DIR%nvidia_instant_replay_fix.obj" ^
    /link /SUBSYSTEM:CONSOLE user32.lib kernel32.lib advapi32.lib
 set "RC=!ERRORLEVEL!"
-del /q "%SCRIPT_DIR%nvidia_instant_replay_fix.obj" 2>nul
+del /q "%SCRIPT_DIR%nvidia_instant_replay_fix.obj" "%SCRIPT_DIR%app.res" 2>nul
 if not "!RC!"=="0" (
     popd
     echo [ERR] MSVC build failed for exe ^(exit !RC!^)

@@ -4,13 +4,11 @@
 
 ## Demo
 
-![Setup](docs/install.gif)
+**Apple Music open and playing — yet Instant Replay stays on. NVIDIA never disables it:**
 
-Apple Music opens and NVIDIA's "protected app" toast fires — but Instant Replay keeps recording (it is **not** disabled):
+![Apple Music open, NVIDIA overlay shows Instant Replay active](docs/applemusic-toast.png)
 
-![Apple Music opens, Instant Replay stays on](docs/applemusic-toast.gif)
-
-![A clip saved while protected content was on screen](docs/after-fix.png)
+![Instant Replay is on](docs/after-fix.png)
 
 ## Install
 

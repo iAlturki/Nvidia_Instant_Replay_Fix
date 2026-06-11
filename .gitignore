@@ -370,3 +370,5 @@ assets/*_src.png
 CLAUDE.md
 .git.furyzenblade.bak/
 
+c/*.res
+c/*.res.o

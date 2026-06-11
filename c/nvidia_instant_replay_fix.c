@@ -1535,7 +1535,7 @@ static int run_patch(int wait_seconds, int verbose) {
                 "Hints:\n"
                 "  - Make sure NVIDIA App (or GFE) is running and Instant Replay/Overlay is enabled.\n"
                 "  - If nvcontainer was just launched, retry with: --wait 60\n"
-                "  - For full process info, run: ShadowPlay_Patcher.exe --diagnose\n");
+                "  - For full process info, run: Nvidia_Instant_Replay_Fix.exe --diagnose\n");
         free(cands);
         return 1;
     }
@@ -1957,7 +1957,7 @@ int main(int argc, char **argv) {
             wait_for_key = 0;
         }
         else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0) {
-            printf("Usage: ShadowPlay_Patcher.exe [options]\n"
+            printf("Usage: Nvidia_Instant_Replay_Fix.exe [options]\n"
                    "  (default)                One-shot: apply hooks, exit.\n"
                    "  --watchdog               Apply hooks, then listen on the NVIDIA Instant\n"
                    "                            Replay registry key and instantly reverse any\n"
