@@ -1,0 +1,22 @@
+Nvidia_Instant_Replay_Fix
+Copyright (c) 2026 iALTURKi
+https://github.com/iALTURKi/Nvidia_Instant_Replay_Fix
+
+Licensed under the MIT License (see LICENSE).
+
+Based on the approach pioneered by furyzenblade/ShadowPlay_Patcher
+(https://github.com/furyzenblade/ShadowPlay_Patcher) - the technique of
+patching NVIDIA's user-mode protected-content checks. This is an independent
+reimplementation; credit for the original idea goes to furyzenblade.
+
+If you redistribute, fork, or build on this software, you must retain the
+copyright notice and this attribution to iALTURKi.
+
+-------------------------------------------------------------------------------
+DISCLAIMER
+
+This is an independent, unofficial tool. It is NOT affiliated with, endorsed
+by, or sponsored by NVIDIA Corporation. "NVIDIA", "ShadowPlay", "Instant
+Replay", and "GeForce" are trademarks of NVIDIA Corporation, used here only
+for identification. All other trademarks are the property of their respective
+owners.

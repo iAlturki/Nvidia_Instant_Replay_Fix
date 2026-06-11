@@ -1,0 +1,40 @@
+name: Build
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up MSVC x64 environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Build (MSVC)
+        working-directory: ./c
+        shell: cmd
+        run: call .\build.bat msvc
+
+      - name: Smoke-test --help
+        working-directory: ./c
+        shell: cmd
+        run: .\Nvidia_Instant_Replay_Fix.exe --help
+
+      - name: Upload exe artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Nvidia_Instant_Replay_Fix
+          path: ./c/Nvidia_Instant_Replay_Fix.exe
+          if-no-files-found: error
