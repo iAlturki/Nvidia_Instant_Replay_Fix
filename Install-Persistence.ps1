@@ -190,8 +190,8 @@ function Remove-NIRFPreviousInstall {
     $allTaskNames = @($Script:NIRF_TaskName) + $Script:NIRF_LegacyTasks
     foreach ($n in $allTaskNames) {
         if (Get-ScheduledTask -TaskName $n -ErrorAction SilentlyContinue) {
-            Unregister-ScheduledTask -TaskName $n -Confirm:$false
-            $report.TasksRemoved += $n
+            try { Unregister-ScheduledTask -TaskName $n -Confirm:$false -ErrorAction Stop; $report.TasksRemoved += $n }
+            catch { }
         }
     }
 

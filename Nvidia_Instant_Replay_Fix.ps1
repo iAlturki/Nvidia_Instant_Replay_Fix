@@ -5,7 +5,7 @@
 
     Keeps NVIDIA Instant Replay (ShadowPlay) recording even when a "protected"
     app (a DRM browser tab, Apple Music, Netflix, etc.) is open, by installing a
-    tiny hands-free background task. Everything is in this one script.
+    background startup task. Everything is in this one script.
 
 .PARAMETER Uninstall        Remove the background task + installed files.
 .PARAMETER Reapply          Push the hooks onto the running NVIDIA process now.
@@ -13,7 +13,7 @@
 .PARAMETER ReinstallNvidia  Open NVIDIA's download page (repair overlay/recording).
 .PARAMETER Fast             Skip the slow intro animation.
 
-.EXAMPLE  .\Nvidia_Instant_Replay_Fix.ps1                 # install (animated) + menu
+.EXAMPLE  .\Nvidia_Instant_Replay_Fix.ps1                 # install + menu
 .EXAMPLE  .\Nvidia_Instant_Replay_Fix.ps1 -Status
 .EXAMPLE  .\Nvidia_Instant_Replay_Fix.ps1 -Uninstall
 
@@ -105,7 +105,7 @@ $script:NirfBannerLines = @(
     '   ╚═╝ ╚═╝  ╚═╝ ╚══════╝  ╚═╝     ╚═════╝  ╚═╝  ╚═╝ ╚═╝  ╚═╝ ╚═╝'
 )
 $script:NirfSub1 = 'Nvidia_instant_replay_Fix'
-$script:NirfSub2 = 'event-driven  -  hands-free'
+$script:NirfSub2 = 'Instant Replay keep-alive'
 
 # NVIDIA-green gradient endpoints (dark -> green -> bright -> white peak).
 $script:NirfDark  = @(11,46,8)      # near-black green
@@ -727,8 +727,8 @@ function Remove-NIRFPreviousInstall {
     $allTaskNames = @($Script:NIRF_TaskName) + $Script:NIRF_LegacyTasks
     foreach ($n in $allTaskNames) {
         if (Get-ScheduledTask -TaskName $n -ErrorAction SilentlyContinue) {
-            Unregister-ScheduledTask -TaskName $n -Confirm:$false
-            $report.TasksRemoved += $n
+            try { Unregister-ScheduledTask -TaskName $n -Confirm:$false -ErrorAction Stop; $report.TasksRemoved += $n }
+            catch { }
         }
     }
 
@@ -981,7 +981,7 @@ function Invoke-NirfInstall {
     Install-NIRFBinary -SourceExe $src -DestExe $paths.ExePath
     Write-NirfStep ("Installed engine -> {0}" -f $paths.ExePath) ok
 
-    Write-NirfStep 'Registering the hands-free background task...' info
+    Write-NirfStep 'Registering the startup task (admin)...' info
     $sid = Get-NIRFSID
     $xml = New-NIRFTaskXml -ExePath $paths.ExePath -LogPath $paths.RunLog -SID $sid.SID -Mode Watchdog
     Save-NIRFTaskXml -Xml $xml -Path $paths.XmlFile
@@ -1036,6 +1036,28 @@ function Invoke-NirfReinstallNvidia {
 }
 
 # ------------------------------------------------------------------ dispatch
+# The memory patch needs no admin, but adding/removing the auto-start scheduled
+# task does. For install/uninstall, re-launch elevated (one UAC prompt).
+function Test-NirfAdmin {
+    try { ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator) }
+    catch { $false }
+}
+$nirfNeedsAdmin = $Uninstall -or -not ($Reapply -or $Status -or $ReinstallNvidia)
+if ($nirfNeedsAdmin -and -not (Test-NirfAdmin)) {
+    $self = if ($PSCommandPath) { $PSCommandPath } else { $MyInvocation.MyCommand.Path }
+    $argList = @('-NoProfile','-ExecutionPolicy','Bypass','-File', ('"{0}"' -f $self))
+    if ($Uninstall) { $argList += '-Uninstall' }
+    if ($Fast)      { $argList += '-Fast' }
+    try {
+        Start-Process -FilePath 'powershell.exe' -ArgumentList $argList -Verb RunAs | Out-Null
+    } catch {
+        Write-Host ''
+        Write-Host '  Administrator rights are needed to add/remove the startup task.' -ForegroundColor Yellow
+        Write-Host '  Re-run and click Yes on the prompt (or right-click Run.bat > Run as administrator).' -ForegroundColor Yellow
+        Read-Host '  Press Enter to close'
+    }
+    return
+}
 Enable-NirfVT
 if     ($Uninstall)       { Invoke-NirfUninstall }
 elseif ($Reapply)         { Invoke-NirfReapply }

@@ -13,9 +13,9 @@
 ## Install
 
 1. Download **[`Run.bat`](../../releases/latest/download/Run.bat)** from the latest release.
-2. **Double-click it.** Done.
+2. **Double-click it** and approve the prompt (admin is needed once, to register the startup task).
 
-No admin needed. Record/save with your usual NVIDIA hotkey (default **Alt+F10**). To remove it, run `Run.bat` again and choose **Uninstall**.
+Record/save with your usual NVIDIA hotkey (default **Alt+F10**). To remove it, run `Run.bat` again and choose **Uninstall**.
 
 ## Safety
 
