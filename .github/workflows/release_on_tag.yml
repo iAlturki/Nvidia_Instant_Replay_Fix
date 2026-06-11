@@ -38,4 +38,17 @@ jobs:
           name: Release ${{ env.VERSION }}
           draft: false
           files: './artifacts/*'
+
+      # Submit the build to VirusTotal so the README's scan link is always valid.
+      # Needs a free VirusTotal API key in the repo secret VT_API_KEY; without it
+      # this step is skipped (continue-on-error) and the release still publishes.
+      - name: VirusTotal scan
+        continue-on-error: true
+        uses: crazy-max/ghaction-virustotal@v4
+        with:
+          vt_api_key: ${{ secrets.VT_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          update_release_body: true
+          files: |
+            ./artifacts/*.exe
     
