@@ -225,6 +225,28 @@ function Invoke-NirfReinstallNvidia {
 }
 
 # ------------------------------------------------------------------ dispatch
+# The memory patch needs no admin, but adding/removing the auto-start scheduled
+# task does. For install/uninstall, re-launch elevated (one UAC prompt).
+function Test-NirfAdmin {
+    try { ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator) }
+    catch { $false }
+}
+$nirfNeedsAdmin = $Uninstall -or -not ($Reapply -or $Status -or $ReinstallNvidia)
+if ($nirfNeedsAdmin -and -not (Test-NirfAdmin)) {
+    $self = if ($PSCommandPath) { $PSCommandPath } else { $MyInvocation.MyCommand.Path }
+    $argList = @('-NoProfile','-ExecutionPolicy','Bypass','-File', ('"{0}"' -f $self))
+    if ($Uninstall) { $argList += '-Uninstall' }
+    if ($Fast)      { $argList += '-Fast' }
+    try {
+        Start-Process -FilePath 'powershell.exe' -ArgumentList $argList -Verb RunAs | Out-Null
+    } catch {
+        Write-Host ''
+        Write-Host '  Administrator rights are needed to add/remove the startup task.' -ForegroundColor Yellow
+        Write-Host '  Re-run and click Yes on the prompt (or right-click Run.bat > Run as administrator).' -ForegroundColor Yellow
+        Read-Host '  Press Enter to close'
+    }
+    return
+}
 Enable-NirfVT
 if     ($Uninstall)       { Invoke-NirfUninstall }
 elseif ($Reapply)         { Invoke-NirfReapply }
