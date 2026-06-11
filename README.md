@@ -24,9 +24,19 @@ That one file does everything — it downloads the engine, installs a hidden bac
 
 To remove it later, run the same file and choose **Uninstall**.
 
-## Is it safe?
+## Antivirus / "Virus detected"
 
-Open-source. Runs as you (no admin), no telemetry; the only network call is fetching the engine from this repo's releases. Antivirus may flag it heuristically — it patches NVIDIA's process in memory, the same API pattern malware uses — so the full source is here to read, and the download is checksummed.
+Your browser, SmartScreen, or antivirus **will probably flag the download** — that's expected, and it's a **false positive**. The tool injects a few bytes into NVIDIA's `nvcontainer.exe` (`OpenProcess` + `WriteProcessMemory`), the same API pattern malware uses, so heuristic scanners raise a generic `HackTool` / `CodeInjector` flag. There is no network exfiltration, no hidden payload, and the only persistence is a scheduled task you can see and remove.
+
+Don't take my word for it — **verify**:
+
+- **VirusTotal:** [scan `Nvidia_Instant_Replay_Fix.exe`](https://www.virustotal.com/gui/file/1738ef7542b5de9ca18da4448a90c046676403f884e42fc86921242b568b19da) · `sha256 1738ef…b19da` — you'll see a few heuristic engines, not a real signature.
+- **Read the source** — single-file C, all in this repo.
+- **Build it yourself** — `cd c && build.bat`; a binary *you* compiled isn't download-flagged.
+
+If you've verified it and trust it, choose **Keep** in the browser warning, or add a Windows Security exclusion for `%LOCALAPPDATA%\Nvidia_Instant_Replay_Fix\`. *(A code-signed build to remove the warning entirely is on the roadmap.)*
+
+Open-source, runs as you (no admin), no telemetry; the only network call is fetching the engine from this repo's releases.
 
 ## Credits & license
 
