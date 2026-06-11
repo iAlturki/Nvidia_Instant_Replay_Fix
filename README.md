@@ -28,7 +28,7 @@ Your browser, SmartScreen, or antivirus **will probably flag the download** — 
 
 Don't take my word for it — **verify**:
 
-- **VirusTotal:** [scan `Nvidia_Instant_Replay_Fix.exe`](https://www.virustotal.com/gui/file/1738ef7542b5de9ca18da4448a90c046676403f884e42fc86921242b568b19da) · `sha256 1738ef…b19da` — you'll see a few heuristic engines, not a real signature.
+- **VirusTotal:** scan it yourself at [virustotal.com](https://www.virustotal.com/gui/home/upload) — drop in the exe, or paste the [release download URL](https://github.com/iALTURKi/Nvidia_Instant_Replay_Fix/releases/latest/download/Nvidia_Instant_Replay_Fix.exe). You'll see only a few heuristic engines, not a real signature. This build: `sha256 673de943…1ad4d598`.
 - **Read the source** — single-file C, all in this repo.
 - **Build it yourself** — `cd c && build.bat`; a binary *you* compiled isn't download-flagged.
 
