@@ -32,7 +32,9 @@ Don't take my word for it — **verify**:
 - **Read the source** — single-file C, all in this repo.
 - **Build it yourself** — `cd c && build.bat`; a binary *you* compiled isn't download-flagged.
 
-If you've verified it and trust it, choose **Keep** in the browser warning, or add a Windows Security exclusion for `%LOCALAPPDATA%\Nvidia_Instant_Replay_Fix\`. *(A code-signed build to remove the warning entirely is on the roadmap.)*
+If you've verified it and trust it, choose **Keep** in the browser warning, or add a Windows Security exclusion for `%LOCALAPPDATA%\Nvidia_Instant_Replay_Fix\`.
+
+Why it fires (it's a `…!ml` machine-learning guess, not a signature) and how it's being cleared — Microsoft false-positive report + code signing — is written up in **[docs/ANTIVIRUS.md](docs/ANTIVIRUS.md)**.
 
 Open-source, runs as you (no admin), no telemetry; the only network call is fetching the engine from this repo's releases.
 
