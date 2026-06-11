@@ -149,7 +149,7 @@ function Show-NirfBloom {
 
     try { [Console]::CursorVisible = $false } catch {}
     try {
-        $frames = 16
+        $frames = 8
         for ($fr = 0; $fr -le $frames; $fr++) {
             $R = $maxR * [math]::Pow($fr / [double]$frames, 0.80)    # ease-out expansion
             [Console]::SetCursorPosition(0, 0)
@@ -180,9 +180,9 @@ function Show-NirfBloom {
                 if ($y -lt ($H - 1)) { [void]$sb.Append([Environment]::NewLine) }
             }
             [Console]::Write($sb.ToString())
-            Start-Sleep -Milliseconds 9
+            Start-Sleep -Milliseconds 6
         }
-        Start-Sleep -Milliseconds 45
+        Start-Sleep -Milliseconds 15
     } finally {
         [Console]::Write($reset)
         Clear-Host
@@ -215,7 +215,7 @@ function Get-NirfHsvRgb {
 # block of lines (e.g. the INSTALL COMPLETE box), then settle to NVIDIA green.
 # ----------------------------------------------------------------------------------
 function Show-NirfRainbow {
-    param([string[]]$Lines,[int]$Frames = 26,[double]$ColFreq = 9.0,[double]$Speed = 16.0,[switch]$SettleGreen)
+    param([string[]]$Lines,[int]$Frames = 14,[double]$ColFreq = 9.0,[double]$Speed = 16.0,[switch]$SettleGreen)
     if (-not $script:NirfVT) { Enable-NirfVT }
     $reset = Get-NirfReset
     if (-not ($script:NirfVT -and $script:NirfConsole)) {
@@ -245,7 +245,7 @@ function Show-NirfRainbow {
             [void]$sb.Append($reset).Append([Environment]::NewLine)
         }
         [Console]::Write($sb.ToString())
-        Start-Sleep -Milliseconds 17
+        Start-Sleep -Milliseconds 11
     }
     if ($SettleGreen) {
         [Console]::SetCursorPosition(0, $top)
@@ -301,7 +301,7 @@ function Show-NirfBanner {
             if ($front -le $maxLen) {
                 [Console]::SetCursorPosition(0, [math]::Max(0, [Console]::CursorTop - $script:NirfBannerLines.Count))
             }
-            if (-not $Fast) { Start-Sleep -Milliseconds 10 }
+            if (-not $Fast) { Start-Sleep -Milliseconds 7 }
         }
         }
         # Settle: redraw fully green (cursor is at top of banner block).
@@ -319,7 +319,7 @@ function Show-NirfBanner {
             $k     = 0.40      # spatial frequency (radians/column) - tighter = more bands
             $skew  = 0.85      # per-line phase offset -> diagonal flow
             $speed = 0.42      # phase advance per frame -> flow speed
-            $frames = 28
+            $frames = 14
             for ($frame = 0; $frame -lt $frames; $frame++) {
                 $phase = $frame * $speed
                 # ease the crest sharpness up then back down so it "breathes" in and out
@@ -340,7 +340,7 @@ function Show-NirfBanner {
                     [void]$out.Append($reset).Append([Environment]::NewLine)
                 }
                 [Console]::Write($out.ToString())
-                Start-Sleep -Milliseconds 12
+                Start-Sleep -Milliseconds 8
             }
             # settle back to steady NVIDIA green
             [Console]::SetCursorPosition(0, $top)
@@ -366,8 +366,8 @@ function Show-NirfBanner {
     Write-Host ""
     $pad1 = ' ' * [math]::Max(0, [int](($maxLen - $script:NirfSub1.Length)/2))
     $pad2 = ' ' * [math]::Max(0, [int](($maxLen - $script:NirfSub2.Length)/2))
-    Write-NirfType ($pad1 + $script:NirfSub1) -Color @(190,255,90) -DelayMs $(if($Fast){0}else{6})
-    Write-NirfType ($pad2 + $script:NirfSub2) -Color @(120,140,120) -DelayMs $(if($Fast){0}else{4})
+    Write-NirfType ($pad1 + $script:NirfSub1) -Color @(190,255,90) -DelayMs $(if($Fast){0}else{2})
+    Write-NirfType ($pad2 + $script:NirfSub2) -Color @(120,140,120) -DelayMs $(if($Fast){0}else{1})
     Write-Host ""
 }
 
@@ -942,31 +942,49 @@ function Show-NirfComplete {
     Write-NirfStep 'Record / save with your usual NVIDIA hotkey (default Alt+F10).' ok
 
     Write-Host ''
-    Write-Host '   Manage it ' -NoNewline -ForegroundColor Green
-    Write-Host '- run any of these anytime (no admin for Status):' -ForegroundColor DarkGray
-    Write-Host '     Status  ' -NoNewline -ForegroundColor Cyan
-    Write-Host '.\Nvidia_Instant_Replay_Fix.ps1 -Status   ' -NoNewline -ForegroundColor Gray
-    Write-Host 'is the watchdog running?' -ForegroundColor DarkGray
-    Write-Host '     Remove  ' -NoNewline -ForegroundColor Cyan
-    Write-Host '.\Nvidia_Instant_Replay_Fix.ps1 -Uninstall' -NoNewline -ForegroundColor Gray
-    Write-Host '  uninstall it completely' -ForegroundColor DarkGray
-    Write-Host '     Log     ' -NoNewline -ForegroundColor Cyan
-    Write-Host $Paths.RunLog -NoNewline -ForegroundColor Gray
-    Write-Host '   live activity log' -ForegroundColor DarkGray
+    Write-Host '   Log: ' -NoNewline -ForegroundColor Cyan
+    Write-Host $Paths.RunLog -ForegroundColor DarkGray
 }
 
 function Invoke-NirfMenu {
     Write-Host ''
-    Write-Host '   Anything else? (press Enter to finish)' -ForegroundColor White
-    Write-Host '     [1] Re-apply the fix now' -ForegroundColor Gray
-    Write-Host '     [2] Reinstall / repair the NVIDIA App' -ForegroundColor Gray
-    Write-Host '     [3] Open the project on GitHub' -ForegroundColor Gray
-    switch -Regex (Read-Host '   Choose [1/2/3/Enter]') {
-        '^\s*1' { Invoke-NirfReapply }
-        '^\s*2' { Invoke-NirfReinstallNvidia }
-        '^\s*3' { try { Start-Process $NIRF_GH } catch {} }
+    Write-Host '   What next? ' -NoNewline -ForegroundColor Green
+    Write-Host '(press Enter to finish)' -ForegroundColor DarkGray
+    $opts = @(
+        @('1','Check status',                  'is the watchdog running?'),
+        @('2','Re-apply the fix now',          're-push the hooks onto NVIDIA'),
+        @('3','Uninstall',                     'remove the task + files completely'),
+        @('4','Reinstall / repair NVIDIA App', 'fixes a broken overlay / recording'),
+        @('5','Open the project on GitHub',    '')
+    )
+    foreach ($o in $opts) {
+        Write-Host '     ' -NoNewline
+        Write-Host (" {0} " -f $o[0]) -NoNewline -ForegroundColor Black -BackgroundColor Green
+        Write-Host ("  {0}" -f $o[1]) -NoNewline -ForegroundColor White
+        if ($o[2]) { Write-Host ("  - {0}" -f $o[2]) -ForegroundColor DarkGray } else { Write-Host '' }
+        if (-not $Fast) { Start-Sleep -Milliseconds 28 }
+    }
+    Write-Host ''
+    $choice = Read-Host '   Choose [1-5 / Enter]'
+    switch -Regex ($choice) {
+        '^\s*1' {
+            $t = Get-ScheduledTask -TaskName $Script:NIRF_TaskName -ErrorAction SilentlyContinue
+            if ($t) { Write-NirfStep ("Scheduled task : present  (State = {0})" -f $t.State) ok } else { Write-NirfStep 'Scheduled task : NOT installed' warn }
+            if (Get-Process -Name ([IO.Path]::GetFileNameWithoutExtension($Script:NIRF_ExeName)) -ErrorAction SilentlyContinue) { Write-NirfStep 'Watchdog       : running' ok } else { Write-NirfStep 'Watchdog       : not running' warn }
+        }
+        '^\s*2' { Invoke-NirfReapply }
+        '^\s*3' {
+            Write-NirfStep 'Removing the background task + files...' info
+            [void](Remove-NIRFPreviousInstall -WipeLegacyDirs)
+            $d = Join-Path $env:LOCALAPPDATA 'Nvidia_Instant_Replay_Fix'
+            if (Test-Path -LiteralPath $d) { try { Remove-Item -LiteralPath $d -Recurse -Force -ErrorAction Stop } catch {} }
+            Write-NirfStep 'Uninstalled.' ok
+        }
+        '^\s*4' { Invoke-NirfReinstallNvidia }
+        '^\s*5' { try { Start-Process $NIRF_GH } catch {} }
         default { }
     }
+    if ($choice -match '^\s*[1-5]') { Write-Host ''; [void](Read-Host '   Press Enter to close') }
 }
 
 # ------------------------------------------------------------------ actions
