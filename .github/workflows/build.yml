@@ -32,9 +32,11 @@ jobs:
         shell: cmd
         run: .\Nvidia_Instant_Replay_Fix.exe --help
 
-      - name: Upload exe artifact
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: Nvidia_Instant_Replay_Fix
-          path: ./c/Nvidia_Instant_Replay_Fix.exe
+          path: |
+            ./c/Nvidia_Instant_Replay_Fix.exe
+            ./c/neuter_wda.dll
           if-no-files-found: error

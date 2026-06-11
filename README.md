@@ -1,47 +1,32 @@
 # Nvidia_Instant_Replay_Fix
 
-**Keeps NVIDIA Instant Replay (ShadowPlay) recording even when a "protected" app — a DRM browser tab, Apple Music, Netflix — is on screen, instead of letting NVIDIA pause it or refuse to save your clip.**
-
-Set it once. A tiny hidden background task does the rest — hands-free, and it self-heals across NVIDIA driver/app updates.
+**Stops NVIDIA Instant Replay (ShadowPlay) from cutting out when a "protected" app — a DRM browser tab, Apple Music, Netflix — is on screen. Set it once; it runs itself.**
 
 ## Demo
 
-**Install — one double-click, fully animated:**
+![Setup](docs/install.gif)
 
-![Installer animation](docs/install.gif)
+Apple Music opens and NVIDIA's "protected app" toast fires — but Instant Replay keeps recording (it is **not** disabled):
 
-**Open Apple Music with Instant Replay on: NVIDIA's "protected app" toast fires — but Instant Replay keeps running (it is NOT disabled):**
+![Apple Music opens, Instant Replay stays on](docs/applemusic-toast.gif)
 
-![Apple Music opens, the protected-app toast shows, yet Instant Replay stays enabled](docs/applemusic-toast.gif)
+![A clip saved while protected content was on screen](docs/after-fix.png)
 
-**A clip saved while protected content was on screen:**
+## Install
 
-![Instant Replay recording/saving after the fix](docs/after-fix.png)
+Download **`Nvidia_Instant_Replay_Fix.ps1`** from the **[latest release](../../releases/latest)**, then run it:
 
-## Quick start
-
-1. Grab **`Nvidia_Instant_Replay_Fix.ps1`** + **`Run.bat`** from the [latest release](../../releases/latest).
-2. **Double-click `Run.bat`.** That's it — it installs a hidden logon task and starts protecting Instant Replay.
-
-No admin needed. Record/save with your usual NVIDIA hotkey (default **Alt+F10**).
-
-```
-Nvidia_Instant_Replay_Fix.ps1             install (animated) + menu
-Nvidia_Instant_Replay_Fix.ps1 -Status     check it's running
-Nvidia_Instant_Replay_Fix.ps1 -Uninstall  remove it
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Nvidia_Instant_Replay_Fix.ps1
 ```
 
-## What it does
+That one file does everything — it downloads the engine, installs a hidden background task, and starts protecting Instant Replay. **No admin needed.** Record/save with your usual NVIDIA hotkey (default **Alt+F10**).
 
-- Patches the checks inside NVIDIA's `nvcontainer.exe` that trigger the disable — located at runtime by **stable log-string anchors**, so it keeps working after NVIDIA updates instead of breaking on new versions.
-- Runs a **zero-CPU watchdog** that instantly reverses any registry-based disable NVIDIA still slips through.
-- Auto-starts at logon and when NVIDIA's service restarts; runs hidden.
+To remove it later, run the same file and choose **Uninstall**.
 
-> **It does not** un-blank the protected app's own pixels in the recording — Windows/DWM enforces that upstream of capture. The goal is "don't let an unrelated protected app kill *your* recording," and that's solved. Deep dive: [c/RESEARCH.md](c/RESEARCH.md), [c/OVERLAY_ARCHITECTURE.md](c/OVERLAY_ARCHITECTURE.md).
+## Is it safe?
 
-## Safety
-
-Open-source, single-file C. No network, no telemetry, writes only under `%LOCALAPPDATA%\Nvidia_Instant_Replay_Fix\`, runs as you (no elevation). Antivirus may *heuristically* flag it — `OpenProcess`+`WriteProcessMemory` is also the pattern malware uses for injection. The source is short; audit it, and check the SHA256 on [VirusTotal](https://www.virustotal.com/).
+Open-source. Runs as you (no admin), no telemetry; the only network call is fetching the engine from this repo's releases. Antivirus may flag it heuristically — it patches NVIDIA's process in memory, the same API pattern malware uses — so the full source is here to read, and the download is checksummed.
 
 ## Credits & license
 
