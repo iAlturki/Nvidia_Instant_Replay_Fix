@@ -38,34 +38,8 @@ jobs:
           name: Release ${{ env.VERSION }}
           draft: false
           body: |
-            ## Install — download **`Nvidia_Instant_Replay_Fix.ps1`** and run it
-            ```powershell
-            powershell -ExecutionPolicy Bypass -File .\Nvidia_Instant_Replay_Fix.ps1
-            ```
-            …or just double-click **`Run.bat`**. It plays the animated setup, downloads the
-            engine, and installs the hands-free background task. No admin needed.
-
-            > **Don't run `Nvidia_Instant_Replay_Fix.exe` directly** — that's the internal
-            > engine the script fetches, not the installer.
-
-            Antivirus may flag the `.exe` as `…!ml` — a machine-learning false positive, not
-            real malware. Why, and how it's cleared: [docs/ANTIVIRUS.md](https://github.com/iAlturki/Nvidia_Instant_Replay_Fix/blob/main/docs/ANTIVIRUS.md).
+            **Download `Run.bat` and double-click it.** That's the only file you need — no admin required.
           files: |
-            ./Nvidia_Instant_Replay_Fix.ps1
             ./Run.bat
             ./artifacts/Nvidia_Instant_Replay_Fix.exe
-            ./artifacts/neuter_wda.dll
-
-      # Submit the build to VirusTotal so the README's scan link is always valid.
-      # Needs a free VirusTotal API key in the repo secret VT_API_KEY; without it
-      # this step is skipped (continue-on-error) and the release still publishes.
-      - name: VirusTotal scan
-        continue-on-error: true
-        uses: crazy-max/ghaction-virustotal@v4
-        with:
-          vt_api_key: ${{ secrets.VT_API_KEY }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          update_release_body: true
-          files: |
-            ./artifacts/*.exe
     
