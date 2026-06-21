@@ -372,3 +372,10 @@ CLAUDE.md
 
 c/*.res
 c/*.res.o
+
+# === RE scratch (one-off pefile/capstone scripts + their text dumps) ===
+# Keep only the canonical resolver tooling; ignore throwaway analysis.
+c/*.py
+!c/dump_for_resolver.py
+!c/recon_anchors.py
+c/*.txt
