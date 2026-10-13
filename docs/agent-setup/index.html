@@ -16,6 +16,9 @@
     @media(max-width:700px){.shell{padding:24px 18px 32px}.top{margin-bottom:46px}.card{padding:22px}.card-head{flex-direction:column;align-items:stretch;gap:24px}.identity{flex-basis:auto}.copy{width:100%}.steps{grid-template-columns:1fr;gap:18px}.step{display:grid;grid-template-columns:28px 1fr;column-gap:10px}.step-number{grid-row:1/3}.step-text{grid-column:2}.title{font-size:20px}.logo.wide{width:132px;height:50px}.intro{font-size:16px}.repo-link{font-size:12px}}
     @media(prefers-color-scheme:dark){:root{--bg:#101318;--card:#181d24;--ink:#e9edf2;--muted:#a1aaba;--line:#303845;--soft:#222a35;--success:#9fd7b1}.copy{border-color:#647082}.card{box-shadow:none}}
     @media(prefers-reduced-motion:reduce){.copy{transition:none}.copy:hover{transform:none}}
+
+    .agent-icons{display:inline-flex;align-items:center;gap:7px;flex:none}.agent-icons img{display:block;width:24px;height:24px;object-fit:contain;background:#fff;border-radius:5px;padding:1px}.copy{gap:12px}
+    @media(max-width:440px){.copy{gap:9px;padding:13px 12px;flex-wrap:wrap}.agent-icons{gap:5px}.agent-icons img{width:21px;height:21px}.copy-label{font-size:14px}.copy>svg{display:none}}
   </style>
   <script src="setup.js" defer></script>
 </head>
@@ -28,7 +31,7 @@
     <section class="card" aria-labelledby="project-title">
       <div class="card-head">
         <div class="identity"><img class="logo " src="logo.png" alt="Instant Replay Fix logo"><div><h2 class="title" id="project-title">Instant Replay Fix</h2><p class="platform">Windows · NVIDIA Instant Replay · by iAlturki</p></div></div>
-        <button class="copy" id="copy-prompt" type="button"><span class="copy-label">Copy setup prompt</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="7" width="12" height="15" rx="2"/><path d="M15 7V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3"/></svg></button>
+        <button class="copy" id="copy-prompt" type="button"><span class="copy-label">Copy setup prompt</span><span class="agent-icons" aria-hidden="true"><img src="agents/codex.webp" alt="" title="Codex" width="24" height="24"><img src="agents/claude-code.png" alt="" title="Claude Code" width="24" height="24"><img src="agents/antigravity.svg" alt="" title="Antigravity" width="24" height="24"><img src="agents/kimi-code.png" alt="" title="Kimi Code" width="24" height="24"><img src="agents/cursor.svg" alt="" title="Cursor" width="24" height="24"><img src="agents/github-copilot-card.svg" alt="" title="GitHub Copilot" width="24" height="24"></span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="7" width="12" height="15" rx="2"/><path d="M15 7V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3"/></svg></button>
       </div>
       <p class="status" id="copy-status" role="status" aria-live="polite">Click to copy, then paste into your AI agent.</p>
       <div class="steps">
@@ -48,7 +51,7 @@ Inspect the current README and exact installer source before running it. Confirm
 Project creator and maintainer: iAlturki. Setup prompt © 2026 iAlturki, CC BY-NC-SA 4.0.
 </textarea></details>
     </section>
-    <footer class="footer"><span>Created and maintained by <a href="https://github.com/iAlturki"><strong>iAlturki</strong></a></span><span><a href="LICENSE.txt">CC BY-NC-SA 4.0</a> · <a href="https://github.com/iAlturki/Nvidia_Instant_Replay_Fix/blob/main/README.md">Software documentation</a></span></footer>
+    <footer class="footer"><span>Created and maintained by <a href="https://github.com/iAlturki"><strong>iAlturki</strong></a></span><span><a href="LICENSE.txt">CC BY-NC-SA 4.0</a> · <a href="agents/NOTICE.md">Agent icon credits</a> · <a href="https://github.com/iAlturki/Nvidia_Instant_Replay_Fix/blob/main/README.md">Software documentation</a></span></footer>
   </main>
 </body>
 </html>

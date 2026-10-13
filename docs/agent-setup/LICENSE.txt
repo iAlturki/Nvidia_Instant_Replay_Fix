@@ -7,6 +7,10 @@ new iAlturki setup artwork. It does not relicense the software, vendor SDKs,
 or pre-existing artwork supplied under another license. Refer to the main
 repository's LICENSE/NOTICE for software and original artwork terms.
 
+Third-party AI agent marks under agents/ and embedded in assets/ai-setup.svg
+are excluded from this license. See agents/NOTICE.md and the retained
+OCTICONS-LICENSE.txt for their ownership, sources, and applicable rights.
+
 Attribution-NonCommercial-ShareAlike 4.0 International
 
 =======================================================================

@@ -23,3 +23,6 @@ owners.
 
 LICENSING SCOPE
 From 2026-10-13, iAlturki's original material in this revision uses CC BY-NC-SA 4.0. Earlier MIT releases/copies retain their grants. Third-party materials and historical upstream contributions are not relicensed. The previous MIT text is preserved in LICENSES/previous-MIT.txt.
+
+AI AGENT MARKS
+The bundled agent marks in assets/agents and docs/agent-setup/agents, also embedded in the setup pill, belong to their respective owners and are excluded from this project's CC BY-NC-SA/GPL grants. They identify agents users may choose and imply no endorsement. See assets/agents/NOTICE.md; the MIT GitHub Octicons notice is retained. Setup layout/text remain credited to iAlturki.
