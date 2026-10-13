@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+# Copyright (c) 2026 iAlturki
 #Requires -Version 5.1
 <#  Reads the byte at _nvspcaps64.dll+0x9832B in every nvcontainer.exe
     that has _nvspcaps64.dll loaded, and tells us whether hook 8 is

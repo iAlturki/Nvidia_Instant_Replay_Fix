@@ -1,7 +1,9 @@
+@rem SPDX-License-Identifier: CC-BY-NC-SA-4.0
+@rem Copyright (c) 2026 iAlturki
 @echo off
 REM Nvidia_Instant_Replay_Fix - one-click launcher.
 REM Always fetches the LATEST installer (never uses a stale local copy).
-REM Copyright (c) 2026 iALTURKi - MIT - github.com/iALTURKi/Nvidia_Instant_Replay_Fix
+REM Copyright (c) 2026 iAlturki - CC BY-NC-SA 4.0 - github.com/iAlturki/Nvidia_Instant_Replay_Fix
 setlocal
 set "DL=%TEMP%\Nvidia_Instant_Replay_Fix.ps1"
 set "URL=https://raw.githubusercontent.com/iAlturki/Nvidia_Instant_Replay_Fix/main/Nvidia_Instant_Replay_Fix.ps1"

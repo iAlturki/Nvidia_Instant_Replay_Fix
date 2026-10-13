@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+# Copyright (c) 2026 iAlturki
 #Requires -Version 5.1
 <#
 .SYNOPSIS
@@ -15,7 +17,7 @@
     already written into the currently-running nvcontainer.exe stay until that
     process restarts (e.g. reboot or NVIDIA service restart).
 
-    by iALTURKi
+    by iAlturki
 #>
 [CmdletBinding()]
 param(

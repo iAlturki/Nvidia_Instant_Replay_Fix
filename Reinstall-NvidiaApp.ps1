@@ -1,4 +1,6 @@
-﻿<#
+﻿# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+# Copyright (c) 2026 iAlturki
+<#
 .SYNOPSIS
     Guided reinstall/repair of the NVIDIA App to restore clean, version-matched,
     signed ShadowPlay components (_nvspcaps64.dll etc.). Fixes:

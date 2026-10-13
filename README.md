@@ -1,3 +1,12 @@
+<!-- AI setup by iAlturki -->
+<p align="center">
+  <img src="assets/logo.svg" width="76" alt="Instant Replay Fix logo">
+  &nbsp;&nbsp;
+  <a href="https://ialturki.github.io/Nvidia_Instant_Replay_Fix/agent-setup/"><img src="assets/ai-setup.svg" width="330" alt="Set up with your AI agent — open the setup prompt copier"></a>
+</p>
+<p align="center"><sub>Click the setup button, copy the prompt, and give it to your AI agent. <a href="docs/agent-setup/prompt.txt">Read the prompt</a>.</sub></p>
+<!-- /AI setup by iAlturki -->
+
 # Nvidia_Instant_Replay_Fix
 
 **Stops NVIDIA Instant Replay (ShadowPlay) from cutting out when a "protected" app — a DRM browser tab, Apple Music, Netflix — is on screen. Set it once; it runs itself.**
@@ -19,10 +28,13 @@ Record/save with your usual NVIDIA hotkey (default **Alt+F10**). To remove it, r
 
 ## Safety
 
-Open-source, single-file C — read it, or build it yourself with `cd c && build.bat`. It runs as you (no admin), keeps no telemetry, and writes only under `%LOCALAPPDATA%\Nvidia_Instant_Replay_Fix\`.
+Source-available, single-file C — read it, or build it yourself with `cd c && build.bat`. It runs as you (no admin), keeps no telemetry, and writes only under `%LOCALAPPDATA%\Nvidia_Instant_Replay_Fix\`.
 
 ## Credits & license
 
 Based on the approach pioneered by **[furyzenblade/ShadowPlay_Patcher](https://github.com/furyzenblade/ShadowPlay_Patcher)**.
 
-MIT © 2026 **[iALTURKi](https://github.com/iALTURKi)** — see [LICENSE](LICENSE). Independent, unofficial tool; not affiliated with NVIDIA Corporation.
+CC BY-NC-SA 4.0 © 2026 **[iAlturki](https://github.com/iAlturki)** — see [LICENSE](LICENSE). Independent, unofficial tool; not affiliated with NVIDIA Corporation.
+
+
+Current original material is **CC BY-NC-SA 4.0 © iAlturki**. Earlier MIT releases retain their original terms; third-party material retains its own notices. See [NOTICE](NOTICE) and [LICENSES/previous-MIT.txt](LICENSES/previous-MIT.txt).

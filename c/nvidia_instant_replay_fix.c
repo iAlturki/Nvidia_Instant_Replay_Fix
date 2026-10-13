@@ -1,9 +1,11 @@
+// SPDX-License-Identifier: CC-BY-NC-SA-4.0
+// Copyright (c) 2026 iAlturki
 /*
  * Nvidia_Instant_Replay_Fix
- * Copyright (c) 2026 iALTURKi  <https://github.com/iALTURKi>
- * Licensed under the MIT License. See the LICENSE file in the project root.
+ * Copyright (c) 2026 iAlturki  <https://github.com/iAlturki>
+ * Licensed under CC BY-NC-SA 4.0. See the LICENSE file in the project root.
  *
- * Project: https://github.com/iALTURKi/Nvidia_Instant_Replay_Fix
+ * Project: https://github.com/iAlturki/Nvidia_Instant_Replay_Fix
  *
  * Finds the nvcontainer.exe instance that runs the SPUser plugin (the one
  * doing the "protected content" / "invisible window" checks) and patches the

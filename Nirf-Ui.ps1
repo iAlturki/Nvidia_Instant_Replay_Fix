@@ -1,6 +1,8 @@
-﻿# Nvidia_Instant_Replay_Fix
-# Copyright (c) 2026 iALTURKi  <https://github.com/iALTURKi>
-# Licensed under the MIT License. See the LICENSE file in the project root.
+﻿# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+# Copyright (c) 2026 iAlturki
+# Nvidia_Instant_Replay_Fix
+# Copyright (c) 2026 iAlturki  <https://github.com/iAlturki>
+# Licensed under CC BY-NC-SA 4.0. See the LICENSE file in the project root.
 #
 # Nirf-Ui.ps1  -  eye-catchy terminal UI / animation library for Nvidia_Instant_Replay_Fix
 # Dot-source it:   . .\Nirf-Ui.ps1   then call Show-NirfBanner, Write-NirfType, etc.
@@ -509,7 +511,7 @@ function Show-NirfIcons {
         [Console]::Write($lead +
             $cN + (& $ctr 'NVIDIA' $seg) + $reset +
             $cR + (& $ctr 'replay' $seg) + $reset +
-            $cA + (& $ctr 'iALTURKi' ($w - 2 * $seg)) + $reset + [Environment]::NewLine)
+            $cA + (& $ctr 'iAlturki' ($w - 2 * $seg)) + $reset + [Environment]::NewLine)
         return
     }
     # Fallback: the stylized block icons.

@@ -1,3 +1,5 @@
+@rem SPDX-License-Identifier: CC-BY-NC-SA-4.0
+@rem Copyright (c) 2026 iAlturki
 @echo off
 setlocal EnableDelayedExpansion
 rem ============================================================

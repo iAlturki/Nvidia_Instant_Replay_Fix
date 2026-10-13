@@ -1,4 +1,6 @@
-﻿#Requires -Version 5.1
+﻿# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+# Copyright (c) 2026 iAlturki
+#Requires -Version 5.1
 <#
 .SYNOPSIS
     Nvidia_Instant_Replay_Fix - hands-free installer.
@@ -11,8 +13,8 @@
     Each step is reported individually so it's obvious what's happening.
 .NOTES
     Nvidia_Instant_Replay_Fix
-    Copyright (c) 2026 iALTURKi  <https://github.com/iALTURKi>
-    Licensed under the MIT License. See the LICENSE file in the project root.
+    Copyright (c) 2026 iAlturki  <https://github.com/iAlturki>
+    Licensed under CC BY-NC-SA 4.0. See the LICENSE file in the project root.
 #>
 [CmdletBinding()]
 param()
@@ -40,11 +42,11 @@ function WL  ($t,$c='Gray'){ Write-Host $t -ForegroundColor $c }
 function NL  { Write-Host '' }
 function Chip($t,$bg='DarkGreen'){ Write-Host " $t " -ForegroundColor Black -BackgroundColor $bg -NoNewline }
 
-$Host.UI.RawUI.WindowTitle = 'Nvidia_Instant_Replay_Fix - Setup  |  by iALTURKi'
+$Host.UI.RawUI.WindowTitle = 'Nvidia_Instant_Replay_Fix - Setup  |  by iAlturki'
 Clear-Host
 
 # ----------------------------------------------------------------------------
-# Banner: iALTURKi in ANSI Shadow block letters.
+# Banner: iAlturki in ANSI Shadow block letters.
 # ----------------------------------------------------------------------------
 $banner = @(
     '   ██╗  █████╗  ██╗    ████████╗ ██╗   ██╗ ██████╗  ██╗  ██╗ ██╗',
@@ -73,7 +75,7 @@ if (-not $bannerShown) {
 }
 NL
 WL '   ----------------------------------------------------------'  DarkGray
-WL '                          by iALTURKi'                          Magenta
+WL '                          by iAlturki'                          Magenta
 WL '   ----------------------------------------------------------'  DarkGray
 NL
 
@@ -313,8 +315,8 @@ WL '               paste this in PowerShell to confirm the task is installed and
 W '   '; Chip 'REMOVE ' DarkRed;   W '   '; WL (Join-Path $Repo 'Uninstall-Persistence.ps1') Cyan
 WL '               run this script to fully uninstall (stops + deletes the task and files).' DarkGray
 NL
-$Script:NIRF_GitHub = 'https://github.com/iALTURKi/Nvidia_Instant_Replay_Fix'
-WL '   github.com/iALTURKi/Nvidia_Instant_Replay_Fix' DarkGray
+$Script:NIRF_GitHub = 'https://github.com/iAlturki/Nvidia_Instant_Replay_Fix'
+WL '   github.com/iAlturki/Nvidia_Instant_Replay_Fix' DarkGray
 NL
 WL '   Pressing Enter opens the project on GitHub, then a quick menu.' Yellow
 Read-Host '   Press Enter' | Out-Null
@@ -335,7 +337,7 @@ W '     [2] ' Cyan; WL 'Reinstall / repair the NVIDIA App' White
 WL '         Opens NVIDIA''s download page - do this if the overlay breaks'   DarkGray
 WL '         or recording/saving stops working (a version mismatch).'         DarkGray
 W '     [3] ' Cyan; WL 'Install MicMute' White
-WL '         Downloads + runs iALTURKi''s mic-mute hotkey tool from GitHub.'   DarkGray
+WL '         Downloads + runs iAlturki''s mic-mute hotkey tool from GitHub.'   DarkGray
 W '     [Enter] ' DarkGray; WL "Finish - you're all set."                     Gray
 NL
 $choice = Read-Host '   Choose [1/2/3/Enter]'

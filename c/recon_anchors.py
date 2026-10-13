@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+# Copyright (c) 2026 iAlturki
 """Dump the ASCII strings each target function references, so the runtime
 resolver can anchor on stable log-strings instead of hardcoded RVAs.
 

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+# Copyright (c) 2026 iAlturki
 """Disassemble the patch-site regions on 11.0.8.244 to design version-robust
 patterns for the runtime resolver (anchor string -> function -> local pattern)."""
 import pefile

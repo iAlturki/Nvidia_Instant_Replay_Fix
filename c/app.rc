@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: CC-BY-NC-SA-4.0
+// Copyright (c) 2026 iAlturki
 #include <windows.h>
 
 /* Application icon */
@@ -19,15 +21,15 @@ BEGIN
   BEGIN
     BLOCK "040904b0"
     BEGIN
-      VALUE "CompanyName",      "iALTURKi"
+      VALUE "CompanyName",      "iAlturki"
       VALUE "FileDescription",  "Nvidia Instant Replay Fix - keeps NVIDIA ShadowPlay recording"
       VALUE "FileVersion",      "1.0.0.0"
       VALUE "InternalName",     "Nvidia_Instant_Replay_Fix"
-      VALUE "LegalCopyright",   "Copyright (C) 2026 iALTURKi. MIT License."
+      VALUE "LegalCopyright",   "Copyright (C) 2026 iAlturki. CC BY-NC-SA 4.0."
       VALUE "OriginalFilename", "Nvidia_Instant_Replay_Fix.exe"
       VALUE "ProductName",      "Nvidia_Instant_Replay_Fix"
       VALUE "ProductVersion",   "1.0.0.0"
-      VALUE "Comments",         "https://github.com/iALTURKi/Nvidia_Instant_Replay_Fix"
+      VALUE "Comments",         "https://github.com/iAlturki/Nvidia_Instant_Replay_Fix"
     END
   END
   BLOCK "VarFileInfo"

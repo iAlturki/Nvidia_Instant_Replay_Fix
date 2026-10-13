@@ -1,0 +1,6 @@
+<!-- Copyright (c) 2026 iAlturki. SPDX-License-Identifier: CC-BY-NC-SA-4.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="72" viewBox="0 0 360 72" role="img" aria-label="Set up with your AI agent: open the setup prompt copier">
+<rect x="1" y="1" width="358" height="70" rx="35" fill="#fff" stroke="#a6adb8" stroke-width="1.5"/>
+<g font-family="Segoe UI,Arial,sans-serif" fill="#17212d"><text x="27" y="32" font-size="18" font-weight="600">Set up with your AI agent</text><text x="27" y="51" font-size="12" fill="#657182">Click here to copy the setup prompt</text></g>
+<g transform="translate(312 23)" fill="none" stroke="#17212d" stroke-width="1.6"><rect x="6" y="5" width="15" height="19" rx="3"/><path d="M15 5V2a2 2 0 0 0-2-2H3a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h3"/></g>
+</svg>

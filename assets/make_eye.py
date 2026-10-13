@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+# Copyright (c) 2026 iAlturki
 """Convert the NVIDIA eye symbol (cropped from the logo PNG) into a half-block
 truecolor ANSI art file the terminal UI can print. Half blocks (U+2580 top /
 U+2584 bottom) give 2 vertical pixels per character cell, so the eye's spiral

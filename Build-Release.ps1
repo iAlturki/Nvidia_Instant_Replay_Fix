@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+# Copyright (c) 2026 iAlturki
 #Requires -Version 5.1
 <#
 .SYNOPSIS
@@ -9,13 +11,13 @@
     after editing any module to regenerate the single-file release.
 
 .NOTES
-    Copyright (c) 2026 iALTURKi  <https://github.com/iALTURKi>
-    Licensed under the MIT License.
+    Copyright (c) 2026 iAlturki  <https://github.com/iAlturki>
+    Licensed under CC BY-NC-SA 4.0.
 #>
 [CmdletBinding()] param()
 $ErrorActionPreference = 'Stop'
 $root = $PSScriptRoot
-$GH   = 'https://github.com/iALTURKi/Nvidia_Instant_Replay_Fix'
+$GH   = 'https://github.com/iAlturki/Nvidia_Instant_Replay_Fix'
 
 # --- 1. UI library: strip the trailing "run directly = demo" block ---
 $ui = Get-Content (Join-Path $root 'Nirf-Ui.ps1') -Raw -Encoding UTF8
@@ -53,8 +55,8 @@ $tpl = @'
 .EXAMPLE  .\Nvidia_Instant_Replay_Fix.ps1 -Uninstall
 
 .NOTES
-    Copyright (c) 2026 iALTURKi  <https://github.com/iALTURKi>
-    Licensed under the MIT License.  Project: @@GH@@
+    Copyright (c) 2026 iAlturki  <https://github.com/iAlturki>
+    Licensed under CC BY-NC-SA 4.0.  Project: @@GH@@
     Independent, unofficial tool - not affiliated with NVIDIA Corporation.
 #>
 [CmdletBinding()]

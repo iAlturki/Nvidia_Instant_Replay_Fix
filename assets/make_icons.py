@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+# Copyright (c) 2026 iAlturki
 """Render the three feature icons (NVIDIA eye | ShadowPlay record/replay | GitHub
 octocat) as ONE half-block truecolor ANSI strip the terminal UI can print.
 NVIDIA + GitHub come from real images; the record/replay icon is drawn."""

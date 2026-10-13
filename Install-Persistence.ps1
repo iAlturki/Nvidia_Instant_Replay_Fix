@@ -1,4 +1,6 @@
-﻿#Requires -Version 5.1
+﻿# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+# Copyright (c) 2026 iAlturki
+#Requires -Version 5.1
 <#
 .SYNOPSIS
     Installs Nvidia_Instant_Replay_Fix as a hidden Scheduled Task.
@@ -55,7 +57,7 @@
     Define functions only; do not execute the installer pipeline. Used by Setup.ps1.
 
 .NOTES
-    by iALTURKi
+    by iAlturki
 #>
 [CmdletBinding()]
 param(

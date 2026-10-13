@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: CC-BY-NC-SA-4.0
+// Copyright (c) 2026 iAlturki
 /*
  * neuter_wda.dll  -  Display-affinity neutralizer payload
  * Part of Nvidia_Instant_Replay_Fix.
